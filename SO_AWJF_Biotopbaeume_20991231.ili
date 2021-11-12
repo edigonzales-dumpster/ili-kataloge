@@ -1,0 +1,43 @@
+INTERLIS 2.3;
+
+/** !!------------------------------------------------------------------------------
+ *  !! Version    | wer | Änderung
+ *  !!------------------------------------------------------------------------------
+ *  !! 2099-12-31 | sz  | Ersterfassung
+ *  !!==============================================================================
+ */
+!!@ technicalContact="mailto:agi@bd.so.ch"
+MODEL SO_AWJF_Biotopbaeume_20991231 (de)
+AT "https://geo.so.ch/models/AWJF"
+VERSION "2099-12-31"  =
+  IMPORTS CHAdminCodes_V1,GeometryCHLV95_V1,CatalogueObjects_V1;
+
+  TOPIC Kataloge =
+    OID AS INTERLIS.UUIDOID;
+
+    CLASS Kat_Hauptmerkmal
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Code : MANDATORY 0 .. 99;
+      Name : MANDATORY TEXT*255;
+    END Kat_Hauptmerkmal;
+
+    STRUCTURE Kat_Hauptmerkmal_Ref
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : MANDATORY REFERENCE TO (EXTERNAL) SO_AWJF_Biotopbaeume_20991231.Kataloge.Kat_Hauptmerkmal;
+    END Kat_Hauptmerkmal_Ref;
+
+  END Kataloge;
+
+  TOPIC Biotopbaeume =
+    DEPENDS ON SO_AWJF_Biotopbaeume_20991231.Kataloge;
+
+    CLASS Biotopbaum =
+      Geometrie : GeometryCHLV95_V1.Coord2;
+      Baum_ID : TEXT*50;
+      Baumart : TEXT*255;
+      Merkmal : SO_AWJF_Biotopbaeume_20991231.Kataloge.Kat_Hauptmerkmal_Ref;
+    END Biotopbaum;
+
+  END Biotopbaeume;
+
+END SO_AWJF_Biotopbaeume_20991231.

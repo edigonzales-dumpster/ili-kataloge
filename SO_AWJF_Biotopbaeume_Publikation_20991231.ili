@@ -1,0 +1,27 @@
+INTERLIS 2.3;
+
+/** !!------------------------------------------------------------------------------
+ *  !! Version    | wer | Änderung
+ *  !!------------------------------------------------------------------------------
+ *  !! 2099-12-31 | sz  | Ersterfassung
+ *  !!==============================================================================
+ */
+!!@ technicalContact="mailto:agi@bd.so.ch"
+MODEL SO_AWJF_Biotopbaeume_Publikation_20991231 (de)
+AT "https://geo.so.ch/models/AWJF"
+VERSION "2099-12-31"  =
+  IMPORTS GeometryCHLV95_V1;
+
+  TOPIC Biotopbaeume =
+
+    CLASS Biotopbaum =
+      Geometrie : GeometryCHLV95_V1.Coord2;
+      Baum_ID : TEXT*50;
+      Baumart : TEXT*255;
+      Merkmal_Code : MANDATORY 0 .. 99;
+      Merkmal_Name : MANDATORY TEXT*255;
+    END Biotopbaum;
+
+  END Biotopbaeume;
+
+END SO_AWJF_Biotopbaeume_Publikation_20991231.
