@@ -2,6 +2,7 @@
 
 ## Fragen
 - Umgang mit Baskets, Datasets? Ist das notwendig? Erstellen wir einmalig zu Beginn den Katalog und dann ist gut? Der Anwender kann in QGIS ja immer weitere Werte erfassen (auch wenn das nicht gewollt ist). Bei einem Modellupdate könnten dann die zusätzlichen Werte im Katalog schnell vergessen gehen.
+- Was muss kommentiert werden? Nur das Attribut in der Klassen? (Nicht die Katalog-Konstrukte?)
 
 ## Test
 
