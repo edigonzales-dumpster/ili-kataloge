@@ -6,6 +6,8 @@
 
 ## Test
 
+### PostgreSQL
+
 ```
 docker run --rm --name editdb -p 54321:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=edit -e PG_READ_PWD=dmluser -e PG_WRITE_PWD=gretl sogis/oereb-db:latest
 ```
@@ -69,4 +71,20 @@ FROM
 
 ```
 java -jar /Users/stefan/apps/ili2pg-4.6.0/ili2pg-4.6.0.jar --dbhost localhost --dbport 54321 --dbdatabase edit --dbusr ddluser --dbpwd ddluser --nameByTopic --strokeArcs --defaultSrsCode 2056 --createFk --createFkIdx --createGeomIdx --modeldir ".;https://models.geo.admin.ch" --models SO_AWJF_Biotopbaeume_Publikation_20991231 --dbschema awjf_biotopbaeume_pub --export ch.so.awjf.biotopbaeume_pub.xtf
+```
+
+### GPKG (edit only)
+
+... Schema anlegen und Daten mit Katalog importieren ...
+
+```
+java -jar /Users/stefan/apps/ili2gpkg-4.6.0/ili2gpkg-4.6.0.jar --dbfile fubar.gpkg --nameByTopic --strokeArcs --defaultSrsCode 2056 --createFk --createFkIdx --createGeomIdx --modeldir ".;https://models.geo.admin.ch" --models SO_AWJF_Biotopbaeume_20991231 --schemaimport
+
+java -jar /Users/stefan/apps/ili2gpkg-4.6.0/ili2gpkg-4.6.0.jar --dbfile fubar.gpkg --nameByTopic --strokeArcs --defaultSrsCode 2056 --createFk --createFkIdx --createGeomIdx --modeldir ".;https://models.geo.admin.ch" --models SO_AWJF_Biotopbaeume_20991231 --import ch.so.awjf.biotopbaeume.xtf
+```
+
+... Daten inkl. Katalog exportieren ...
+
+```
+java -jar /Users/stefan/apps/ili2gpkg-4.6.0/ili2gpkg-4.6.0.jar --dbfile fubar.gpkg --nameByTopic --strokeArcs --defaultSrsCode 2056 --createFk --createFkIdx --createGeomIdx --modeldir ".;https://models.geo.admin.ch" --models SO_AWJF_Biotopbaeume_20991231 --export fubar.xtf
 ```
